@@ -11,16 +11,16 @@ import XCTest
 class MovieModelTest: XCTestCase {
 
     func test_init_movie_withTitle() {
-        let movie = Movie(title: "Prestige")
+        let sut = Movie(title: "Prestige")
         
-        XCTAssertNotNil(movie)
-        XCTAssertEqual(movie.title, "Prestige")
+        XCTAssertNotNil(sut)
+        XCTAssertEqual(sut.title, "Prestige")
     }
     
     func test_init_movie_withReleaseDate() {
-        let movie = Movie(title: "", releaseDate: "1996")
+        let sut = Movie(title: "Prestige", releaseDate: "1996")
         
-        XCTAssertNotNil(movie)
-        XCTAssertEqual(movie.releaseDate, "1996")
+        XCTAssertNotNil(sut)
+        XCTAssertEqual(sut.releaseDate, "1996")
     }
 }
