@@ -12,13 +12,16 @@ class MovieManagerTest: XCTestCase {
 
     var sut: MovieManager!
     
+    let prestigeMovie = Movie(title: "Prestige")
+    let inceptionMovie = Movie(title: "Inception")
+    
     override func setUp() {
         super.setUp()
         
         sut = MovieManager()
     }
     
-    //MARK:- Initialization tests
+    //MARK:- Initialize
     func test_init_returnsZeroMoviesToSeeCountAndZeroMoviesSeenCount() {
         XCTAssertEqual(sut.moviesToSeeCount, 0)
         XCTAssertEqual(sut.moviesSeenCount, 0)
@@ -26,14 +29,12 @@ class MovieManagerTest: XCTestCase {
     
     //MARK:- Add and Query
     func test_addMovie_returnOneMoviesToSeeCount() {
-        let prestigeMovie = Movie(title: "Prestige")
         sut.add(movie: prestigeMovie)
         
         XCTAssertEqual(sut.moviesToSeeCount, 1)
     }
     
     func test_addOneMovie_addedMovieTitleEqualsFirstMovieTitle() {
-        let prestigeMovie = Movie(title: "Prestige")
         sut.add(movie: prestigeMovie)
         
         let firstMovie = sut.movieAt(index: 0)
@@ -42,19 +43,17 @@ class MovieManagerTest: XCTestCase {
     }
     
     func test_addTwoMovies_secondAddedMovieTitleEqualsSecondMovieTitle() {
-        let prestigeMovie = Movie(title: "Prestige")
-        let inception = Movie(title: "Inception")
         sut.add(movie: prestigeMovie)
-        sut.add(movie: inception)
+        sut.add(movie: inceptionMovie)
         
         let secondMovie = sut.movieAt(index: 1)
         
-        XCTAssertEqual(inception.title, secondMovie.title)
+        XCTAssertEqual(inceptionMovie.title, secondMovie.title)
     }
     
     
+    //MARK:- CheckOff
     func test_checkOffAMovie_returnOneMoviesSeenCountAndZeroMoviesToSeeCount() {
-        let prestigeMovie = Movie(title: "Prestige")
         sut.add(movie: prestigeMovie)
         
         sut.checkOffMovieAt(index: 0)
@@ -64,15 +63,21 @@ class MovieManagerTest: XCTestCase {
     }
     
     func test_checkOffMovie_removesMovieFromMoviestoSeeArray() {
-        let prestige = Movie(title: "Prestige")
-        let inception = Movie(title: "Inception")
-        sut.add(movie: prestige)
-        sut.add(movie: inception)
+        sut.add(movie: prestigeMovie)
+        sut.add(movie: inceptionMovie)
         
         sut.checkOffMovieAt(index: 0)
         let firstMovie = sut.movieAt(index: 0)
         
-        XCTAssertEqual(firstMovie.title, inception.title)
+        XCTAssertEqual(firstMovie.title, inceptionMovie.title)
     }
     
+    func test_checkedOffMovieAtIndex_returnMovieAtIndex() {
+        sut.add(movie: prestigeMovie)
+        sut.checkOffMovieAt(index: 0)
+        
+        let checkedOffMovie = sut.checkedOffMovieAt(index: 0)
+        
+        XCTAssertEqual(checkedOffMovie.title, prestigeMovie.title)
+    }
 }
