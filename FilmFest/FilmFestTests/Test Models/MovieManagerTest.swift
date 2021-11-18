@@ -60,12 +60,33 @@ class MovieManagerTest: XCTestCase {
         XCTAssertEqual(firstMovie.title, inceptionMovie.title)
     }
     
-    func test_checkedOffMovieAtIndex_returnMovieAtIndex() {
+    func test_checkOffMovie_returnCheckedOffMovieAtIndex() {
         sut.add(movie: prestigeMovie)
         sut.checkOffMovieAt(index: 0)
         
         let checkedOffMovie = sut.checkedOffMovieAt(index: 0)
         
         XCTAssertEqual(checkedOffMovie.title, prestigeMovie.title)
+    }
+    
+    func test_clearMovies_returnZeroMovieCounts() {
+        sut.add(movie: prestigeMovie)
+        sut.add(movie: inceptionMovie)
+        sut.checkOffMovieAt(index: 0)
+        
+        XCTAssertEqual(sut.moviesToSeeCount, 1)
+        XCTAssertEqual(sut.moviesSeenCount, 1)
+        
+        sut.clearMovies()
+        
+        XCTAssertEqual(sut.moviesToSeeCount, 0)
+        XCTAssertEqual(sut.moviesSeenCount, 0)
+    }
+    
+    func test_preventsDuplicateEntry() {
+        sut.add(movie: prestigeMovie)
+        sut.add(movie: prestigeMovie)
+        
+        XCTAssertEqual(sut.moviesToSeeCount, 1)
     }
 }

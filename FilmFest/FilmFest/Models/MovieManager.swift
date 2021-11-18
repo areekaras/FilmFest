@@ -21,7 +21,9 @@ class MovieManager {
     
     //MARK:- Add and Query
     func add(movie: Movie) {
-        moviesToSee.append(movie)
+        if !moviesToSee.contains(movie) {
+            moviesToSee.append(movie)
+        }
     }
     
     func movieAt(index: Int) -> Movie {
@@ -39,4 +41,10 @@ class MovieManager {
     func checkedOffMovieAt(index: Int) -> Movie {
         return moviesSeen[index]
     }
+    
+    func clearMovies() {
+        moviesToSee.removeAll()
+        moviesSeen.removeAll()
+    }
 }
+
