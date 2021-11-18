@@ -8,15 +8,17 @@
 import Foundation
 
 class MovieManager {
-    var moviesToSeeCount = 0
-    var moviesSeenCount = 0
-    
     private var moviesToSee = [Movie]()
     private var moviesSeen = [Movie]()
     
+    var moviesToSeeCount: Int {
+        return moviesToSee.count
+    }
+    var moviesSeenCount: Int {
+        return moviesSeen.count
+    }
+    
     func add(movie: Movie) {
-        moviesToSeeCount += 1
-        
         moviesToSee.append(movie)
     }
     
@@ -26,9 +28,6 @@ class MovieManager {
     
     func checkOffMovieAt(index: Int) {
         guard index < moviesToSeeCount else { return }
-        
-        moviesToSeeCount -= 1
-        moviesSeenCount += 1
         
         let checkedOffMovie = moviesToSee.remove(at: index)
         moviesSeen.append(checkedOffMovie)

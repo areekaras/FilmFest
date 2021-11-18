@@ -28,26 +28,14 @@ class MovieManagerTest: XCTestCase {
     }
     
     //MARK:- Add and Query
-    func test_addMovie_returnOneMoviesToSeeCount() {
-        sut.add(movie: prestigeMovie)
-        
-        XCTAssertEqual(sut.moviesToSeeCount, 1)
-    }
     
-    func test_addOneMovie_addedMovieTitleEqualsFirstMovieTitle() {
-        sut.add(movie: prestigeMovie)
-        
-        let firstMovie = sut.movieAt(index: 0)
-        
-        XCTAssertEqual(prestigeMovie.title, firstMovie.title)
-    }
-    
-    func test_addTwoMovies_secondAddedMovieTitleEqualsSecondMovieTitle() {
+    func test_addMovies_returnsMovie() {
         sut.add(movie: prestigeMovie)
         sut.add(movie: inceptionMovie)
         
         let secondMovie = sut.movieAt(index: 1)
         
+        XCTAssertEqual(sut.moviesToSeeCount, 2)
         XCTAssertEqual(inceptionMovie.title, secondMovie.title)
     }
     
