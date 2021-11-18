@@ -40,7 +40,7 @@ class MovieManagerTest: XCTestCase {
     }
     
     
-    //MARK:- CheckOff
+    //MARK:- Check off
     func test_checkOffAMovie_returnOneMoviesSeenCountAndZeroMoviesToSeeCount() {
         sut.add(movie: prestigeMovie)
         

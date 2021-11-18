@@ -16,3 +16,9 @@ struct Movie {
         self.releaseDate = releaseDate
     }
 }
+
+extension Movie: Equatable {
+    static func ==(lhs: Movie, rhs: Movie) -> Bool {
+        return lhs.title == rhs.title && lhs.releaseDate == rhs.releaseDate
+    }
+}

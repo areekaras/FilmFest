@@ -18,6 +18,8 @@ class MovieManager {
         return moviesSeen.count
     }
     
+    
+    //MARK:- Add and Query
     func add(movie: Movie) {
         moviesToSee.append(movie)
     }
@@ -26,6 +28,7 @@ class MovieManager {
         return moviesToSee[index]
     }
     
+    //MARK:- Check off
     func checkOffMovieAt(index: Int) {
         guard index < moviesToSeeCount else { return }
         
